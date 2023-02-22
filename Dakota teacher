@@ -1,0 +1,64 @@
+import java.util.*;
+class HelloWorld {
+    // Function to remove duplicate from array
+    public static int[] removeDuplicates(int[] a)
+    {
+        LinkedHashSet<Integer> set
+            = new LinkedHashSet<Integer>();
+ 
+        // adding elements to LinkedHashSet
+        for (int i = 0; i < a.length; i++)
+            set.add(a[i]);
+ 
+        // Print the elements of LinkedHashSet
+      return set.stream()
+		   .mapToInt(Integer::intValue)
+		   .toArray();
+    }
+    
+    public static int[] findMissing(int N,int[] A){
+        int[] array=new int[N];
+        int checkFornumber=0;
+        int count=0;
+        int checkMissingNumber=0;
+        for(int i=0;i<N;i++){
+            count=0;
+            checkFornumber=A[i]; 
+            for(int j=0;j<N;j++){
+                if(A[j]==checkFornumber){
+                    count++;
+                }
+                if(count==2){
+                    array[1]=checkFornumber;
+                    break;
+                }
+                
+            }
+            if(count==2){
+                    break;
+                }
+            
+        }
+int[] arr= removeDuplicates(A);
+
+int sum = ((arr.length + 1) * (arr.length + 2)) / 2;
+        for (int i = 0; i < arr.length; i++)
+            sum -= arr[i];
+array[0]=sum;
+
+        return array;
+    }
+    
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int[] A=new int[N];
+        for(int i=0;i<N;i++){
+        A[i]=sc.nextInt();    
+        }
+        int[] result=findMissing(N,A);
+        System.out.println("Missing is : " +result[0] + " Repeated is :"+ result[1] );
+        
+    }
+}
